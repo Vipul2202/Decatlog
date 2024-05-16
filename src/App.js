@@ -1,14 +1,21 @@
-import Navbar from "../src/Components/Navbar";
+import React from 'react';
+import { BrowserRouter as Router , Routes,Route } from 'react-router-dom';
 
-import Professionals from "./Components/Professionals";
+
+import Signup from './Components/Signup';
+import Pages from './Components/Pages';
 
 
 function App() {
   return (
  <div>
-<Navbar/>
-
-<Professionals />
+ <Router>
+      <Routes>
+        <Route path='/' element={<Pages/>}/>
+        <Route path='/Signup' element={<Signup/>}/>
+        
+      </Routes>
+    </Router>
 
  </div>
   );

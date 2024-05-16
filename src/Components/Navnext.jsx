@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Decatlog from "../Assets/Decatlog.png";
 import { Button } from "@mui/material";
 
-const Navbar = ({navigate}) => {
+const Navnext = ({navigate}) => {
   const [isMobile, setIsMobile] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [nav, setNav] = useState(false);
@@ -32,7 +32,7 @@ const Navbar = ({navigate}) => {
   return (
     <div>
       <nav className="">
-        <div className=" z-40 flex  items-center justify-between  p-6 px-[4%] lg:px-[8%] g w-full">
+        <div className=" z-40 flex  items-center justify-between p-6 px-[4%] lg:px-[8%] g w-full bg-gray-200">
 
           <a
             href="https://ragasoft.co.in/about-us/"
@@ -49,22 +49,25 @@ const Navbar = ({navigate}) => {
 
             <div>
               {!isMobile && (
+                <div className="flex flex-row items-center">
+                <p className="w-full">Already have an account?</p>
               <div className="w-full h-10 py-2 bg-[#0BDBB6] px-4 flex justify-center items-center rounded-md text-white hover:scale-105 hover:shadow-md transition duration-300 hover:drop-shadow-2xl">
-              <button onClick={() => navigate('/Signup')}  className="text-white ">Login/Sign Up</button>
+             
+              <button onClick={() => navigate('/Signup')}  className="text-white ">Login</button>
             </div>
             
-                
+                </div>
               )}
             </div>
             
-            <div>
+            {/* <div>
               {!isMobile && (
                 <div className="w-full h-10 py-2 hover:scale-105 hover:shadow-md transition duration-300 hover:drop-shadow-2xl bg-white border-2 border-[#0BDBB6] px-4 flex justify-center items-center rounded-md ">
                       <a href="#contact" className="text-[#0BDBB6] ">Donate Now</a>
                 </div>
                 
               )}
-            </div>
+            </div> */}
           </div>
           
           {isMenuOpen ? (
@@ -166,9 +169,9 @@ const Navbar = ({navigate}) => {
                     <div className="h-10 py-2 bg-[#0BDBB6]  px-4 flex justify-center items-center rounded-md text-white ml-4">
                       <a href="#login/signup" className="text-white">Login/Sign Up</a>
                     </div>
-                    <div className="w-full h-10 py-2 bg-white border-2 border-[#0BDBB6] px-4 flex justify-center items-center rounded-md ">
+                    {/* <div className="w-full h-10 py-2 bg-white border-2 border-[#0BDBB6] px-4 flex justify-center items-center rounded-md ">
                       <a href="#contact" className="text-[#0BDBB6]">Donate Now</a>
-                </div>
+                </div> */}
                   </div>
                 </div>
                 <ul
@@ -235,4 +238,4 @@ const Navbar = ({navigate}) => {
   );
 };
 
-export default Navbar;
+export default Navnext;
