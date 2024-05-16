@@ -28,12 +28,12 @@ const Professionals = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const Cards = [
-        { name: "Lorem Ipsum Dolor Sit", image: slide },
-        { name: "vipul", image: Doctor },
-        { name: "hhhhhhhhhht", image: Teacher },
-        { name: "Lorem Ipsum Dolor Sit", image: Engineer },
-        { name: "vipul", image: Govt },
-        { name: "hhhhhhhhhht", image: Officers },
+        { name: "Lorem Ipsum Dolor Sit", image: slide, url: "https://www.linkedin.com/in/vipul-taneja-a71597219/" },
+        { name: "vipul", image: Doctor, url: "https://www.linkedin.com/in/vipul-taneja-a71597219/" },
+        { name: "hhhhhhhhhht", image: Teacher, url: "https://www.linkedin.com/in/vipul-taneja-a71597219/" },
+        { name: "Lorem Ipsum Dolor Sit", image: Engineer, url: "https://www.linkedin.com/in/vipul-taneja-a71597219/" },
+        { name: "vipul", image: Govt, url: "https://www.linkedin.com/in/vipul-taneja-a71597219/" },
+        { name: "hhhhhhhhhht", image: Officers,  url: "https://www.linkedin.com/in/vipul-taneja-a71597219/" },
     ];
 
     const handleSearchInputChange = (e) => {
@@ -41,16 +41,16 @@ const Professionals = () => {
     };
 
     // Filter professions based on search query
-    const filteredProfessions = Professions.filter(profession =>
-        profession.name.toLowerCase().includes(searchQuery.toLowerCase())
-    );
+    // const filteredProfessions = Professions.filter(profession =>
+    //     profession.name.toLowerCase().includes(searchQuery.toLowerCase())
+    // );
 
     const handleSlideChange = (index) => {
         setActiveIndex(index);
     };
 
     // Decide whether to display filtered or original professions
-    const displayProfessions = searchQuery ? filteredProfessions : Professions;
+   
 
 
     return (
@@ -121,7 +121,7 @@ const Professionals = () => {
                 </div>
                 <div className='w-full  '>
                 <div className='grid grid-cols-4 gap-4'>
-                {filteredProfessions.map((profession, index) => (
+                {Professions.map((profession, index) => (
                     <img key={index} src={profession.image} alt={profession.name} className='col-span-2 lg:col-span-1 w-full' />
                 ))}
             </div>
