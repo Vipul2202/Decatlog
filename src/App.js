@@ -1,5 +1,7 @@
 import Navbar from "../src/Components/Navbar";
+
 import Professionals from "./Components/Professionals";
+
 
 function App() {
   return (
@@ -7,6 +9,7 @@ function App() {
 <Navbar/>
 
 <Professionals />
+
  </div>
   );
 }
