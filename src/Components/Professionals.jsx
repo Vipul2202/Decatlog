@@ -9,6 +9,7 @@ import Govt from "../Assets/Govt.png";
 import Labour from "../Assets/Labour.png";
 import Officers from "../Assets/Officers.png";
 import Teacher from "../Assets/Teacher.png";
+import element from "../Assets/element.png";
 
 const Professions = [
     { name: "Doctor", image: Doctor },
@@ -53,8 +54,10 @@ const Professionals = () => {
 
 
     return (
-        <div className='p-6 px-[4%] lg:px-[8%] w-full'>
-                    <div className=''>
+        <div className='p-6 px-[4%] lg:px-[8%] w-full relative'>
+<img src={element} alt='background' className='absolute top-0 left-0 w-40% h-[500px] z-0  object-cover' />
+
+                    <div className='z-10'>
             <h1 className='text-black text-2xl font-bold'>
                 Lorem Ipsum Dolor Sit Amet,<span className='text-[#0BDBB6]'>Consectetur Adipiscing Elit</span>
             </h1>
@@ -71,7 +74,7 @@ const Professionals = () => {
                         
                     </div>
                     <div class="relative w-full">
-                        <input type="text"  id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-e-lg border-s-gray-50 border-s-2 border border-gray-300 focus:ring-[#0BDBB6] focus:border-[#0BDBB6] dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-[#0BDBB6]" placeholder="Search cardiologist, doctors..." required value={searchQuery}
+                        <input type="text"  id="search-dropdown" class="block p-2.5 w-full z-20 text-sm text-gray-700 bg-gray-50 rounded-e-lg border-s-gray-2 border-s-2 border border-gray-300 focus:ring-[#0BDBB6] focus:border-[#0BDBB6]   dark:border-[#0BDBB6] dark:text-white dark:focus:border-[#0BDBB6]" placeholder="Search cardiologist, doctors..." required value={searchQuery}
                 onChange={handleSearchInputChange}
 />
 
@@ -88,7 +91,7 @@ const Professionals = () => {
 
         </div>
             <div className='grid grid-cols-1 lg:grid-cols-2 space-x-4 mt-4'>
-                <div className='w-full h-96 bg-gradient-to-r from-[#2D4760] to-[#275680] rounded-lg relative px-4 p-4 mt-2'>
+                <div className='h-96  md:w-[95%] w-full bg-gradient-to-r from-[#2D4760] to-[#275680] rounded-lg relative px-4 p-4 mt-2'>
                     <div>
                         <h1 className='text-4xl font-bold w-[60%] text-white '>Lorem Ipsum <span className='text-[#FBFF7F]'>Dolor Sit </span></h1>
                         <h2 className='text-white w-[60%] text-sm'>lLorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum Dolor Sit Amet Lorem Ipsum....</h2>
