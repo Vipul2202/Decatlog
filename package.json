@@ -9,13 +9,11 @@
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^1.6.8",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-<<<<<<< HEAD
     "react-responsive": "^10.0.0",
-=======
     "react-router-dom": "^6.23.1",
->>>>>>> f6b223fad70a10a3c6b92dd01fdef2ce5073f23f
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
