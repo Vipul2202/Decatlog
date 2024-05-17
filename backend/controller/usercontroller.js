@@ -61,7 +61,7 @@ const registerUser = async (req, res) => {
       password: hashedpassword,
       otp,
     });
-   
+
     res
       .status(200)
       .json({ success: true, message: "registered successfully", newuser });
@@ -70,42 +70,52 @@ const registerUser = async (req, res) => {
   }
 };
 
-
 const userlogin = async (req, res) => {
-    const { email, password } = req.body;
-    try {
-        if (!email || !password)return res.status(400).json({
-            success:false,
-            message: "please fill all the fields"
-        })
-        const user = await User.findOne({ email });
-        if(!user)return res.status(404).json({
-            message:"invalid credentials",
+  const { email, password } = req.body;
+  try {
+    if (!email || !password)
+      return res.status(400).json({
+        success: false,
+        message: "please fill all the fields",
+      });
+    const user = await User.findOne({ email });
+    if (!user)
+      return res.status(404).json({
+        message: "invalid credentials",
+      });
+    const ispasswordmatch = await bcrypt.compare(password, user.password);
+    if (!ispasswordmatch)
+      return res.status(404).json({
+        message: "invalid credentials",
+      });
+    const token = jwt.sign({ _id: user._id }, process.env.SECRET_KEY);
+    res.cookie("token", token, {
+      expire: new Date(Date.now() + 1000 * 60 * 60 * 24),
+      httpOnly: true,
+    });
+    res.status(200).json({
+      success: true,
+      message: "login successful",
+      token,
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(404).json({
+      success: false,
+      message: "invalid credentials",
+    });
+  }
+};
+const userLogout = (req, res) => {
+  const  token  = req.cookies["token"];
 
-        })
-        const ispasswordmatch=await bcrypt.compare(password,user.password)
-        if(!ispasswordmatch)return res.status(404).json({
-            message:"invalid credentials"
-        })
-        const token = jwt.sign({_id:user._id},process.env.
-            SECRET_KEY)
-            res.cookie("token", token,{
-                expire:new Date(Date.now()+ 1000*60*60*24),
-                httpOnly:true
-            })
-            res.status(200).json({
-                success:true,
-                message:"login successful",token
-            })
-        
-    } catch (error) {
-        console.log(error)
-        res.status(404).json({
-            success:false,
-            message:"invalid credentials"
-        })
-        
-    }
-}
+  if (!token)
+    return res
+      .status(400)
+      .json({ success: false, message: "Already logged out" });
+  console.log(token);
 
-module.exports = {registerUser,userlogin};
+  res.clearCookie("token");
+};
+
+module.exports = { registerUser, userlogin, userLogout };
