@@ -116,6 +116,7 @@ const userLogout = (req, res) => {
   console.log(token);
 
   res.clearCookie("token");
+  res.status(200).json({ success: true, message: "logged out" });
 };
 
 module.exports = { registerUser, userlogin, userLogout };
