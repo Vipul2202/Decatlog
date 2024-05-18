@@ -7,6 +7,7 @@ import apple from "../Assets/apple.png";
 import Navnext from "../Components/Navnext";
 import Footer from "./Footer";
 import Group from "../Assets/Group.png";
+import axios from "axios";
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ fullname: "", email: "", password: "" });
@@ -53,6 +54,19 @@ const Signup = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleRegister=async() => {
+    try {
+      const res=(await axios.post("http://localhost:5000/api/user/register",formData)).data;
+      console.log(res);
+      
+      
+    } catch (error) {
+      console.log("error in register",error);
+      
+    }
+
+  }
+console.log(formData)
 
 
   return (
@@ -118,6 +132,7 @@ const Signup = () => {
           <div>
             <button
               type="submit"
+              onClick={handleRegister}
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg text-black font-bold bg-[#0BDBB6] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
               Create An Account
