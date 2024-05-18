@@ -32,12 +32,11 @@ const generateOtp = () => {
 };
 
 const registerUser = async (req, res) => {
-  const { name, email, password, cpass } = req.body;
+  const { fullname, email, password } = req.body;
   try {
-    if (!name || !email || !password || !cpass)
+    if (!fullname || !email || !password)
       return res.status(403).json({ message: "please fill all the fields" });
-    if (password !== cpass)
-      return res.status(403).json({ message: "password does not match" });
+    
     const user = await User.findOne({ email });
     if (user) return res.status(403).json({ message: "user already exist" });
 
@@ -56,7 +55,7 @@ const registerUser = async (req, res) => {
     const hashedpassword = await bcrypt.hashSync(password, 10);
     const otp = generateOtp();
     const newuser = await User.create({
-      name,
+      fullname,
       email,
       password: hashedpassword,
       otp,
