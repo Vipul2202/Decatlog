@@ -41,7 +41,7 @@ const registerUser = async (req, res) => {
     const user = await User.findOne({ email });
     if (user) return res.status(403).json({ message: "user already exist" });
 
-    if (!checkPasswordLength(password))
+    if (checkPasswordLength(password))
       return res
         .status(403)
         .json({ message: "cannot be less then 6 characters" });
@@ -107,7 +107,7 @@ const userlogin = async (req, res) => {
   }
 };
 const userLogout = (req, res) => {
-  const  token  = req.cookies["token"];
+  const token = req.cookies["token"];
 
   if (!token)
     return res

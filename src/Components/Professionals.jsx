@@ -1,16 +1,7 @@
-import React, { useEffect, useState } from "react";
-import slide from "../Assets/slide.png";
-import { useMediaQuery } from "react-responsive";
-import Doctor from "../Assets/Doctor.png";
-import Advocate from "../Assets/Advocate.png";
-import Ca from "../Assets/Ca.png";
-import Engineer from "../Assets/Engineer.png";
-import Govt from "../Assets/Govt.png";
-import Labour from "../Assets/Labour.png";
-import Officers from "../Assets/Officers.png";
-import Teacher from "../Assets/Teacher.png";
-import element from "../Assets/element.png";
 import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useMediaQuery } from "react-responsive";
+import element from "../Assets/element.png";
 
 const Professionals = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -18,13 +9,15 @@ const Professionals = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [category, setCategory] = useState([]);
   const [slider, setSlider] = useState([]);
+
   const fetchAllCategories = async () => {
     try {
       const res = (
         await axios.get("http://localhost:5000/api/category/getcategory")
-      ).data;
+      )
+      const data=res.data
       //   console.log(res)
-      setCategory(res.categories);
+      setCategory(data.categories);
       //   console.log("categories", category);
     } catch (error) {
       console.log("error in fetching", error);
@@ -38,10 +31,11 @@ const Professionals = () => {
     try {
       const res = (
         await axios.get("http://localhost:5000/api/slider/getslider")
-      ).data;
-      console.log(res);
-      setSlider(res.sliderdata);
-      console.log("slider", slider);
+      )
+      const data=res.data
+      // console.log(res);
+      setSlider(data?.sliderdata);
+      // console.log("slider", slider);
     } catch (error) {
       console.log("error in fetching slider", error);
     }
@@ -50,54 +44,54 @@ const Professionals = () => {
     fetchSliderDetail()
 },[])
 
-  const Professions = [
-    { name: "Doctor", image: Doctor },
-    { name: "Engineer", image: Engineer },
-    { name: "Chartered Accountant", image: Ca },
-    { name: "Advocate", image: Advocate },
-    { name: "Teacher", image: Teacher },
-    { name: "Labour", image: Labour },
-    { name: "Government Employee", image: Govt },
-    { name: "Officer", image: Officers },
-  ];
-  const Cards = [
-    {
-      name: "Lorem Ipsum Dolor Sit",
-      des: "vhvhvhvhvhvhvhh",
-      image: slide,
-      url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-    },
-    {
-      name: "vipul",
-      des: "vhvhvhvhvhvhvhh",
-      image: Doctor,
-      url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-    },
-    {
-      name: "hhhhhhhhhht",
-      des: "vhvhvhvhvhvhvhh",
-      image: Teacher,
-      url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-    },
-    {
-      name: "Lorem Ipsum Dolor Sit",
-      des: "vhvhvhvhvhvhvhh",
-      image: Engineer,
-      url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-    },
-    {
-      name: "vipul",
-      des: "vhvhvhvhvhvhvhh",
-      image: Govt,
-      url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-    },
-    {
-      name: "hhhhhhhhhht",
-      des: "vhvhvhvhvhvhvhh",
-      image: Officers,
-      url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-    },
-  ];
+  // const Professions = [
+  //   { name: "Doctor", image: Doctor },
+  //   { name: "Engineer", image: Engineer },
+  //   { name: "Chartered Accountant", image: Ca },
+  //   { name: "Advocate", image: Advocate },
+  //   { name: "Teacher", image: Teacher },
+  //   { name: "Labour", image: Labour },
+  //   { name: "Government Employee", image: Govt },
+  //   { name: "Officer", image: Officers },
+  // ];
+  // const Cards = [
+  //   {
+  //     name: "Lorem Ipsum Dolor Sit",
+  //     des: "vhvhvhvhvhvhvhh",
+  //     image: slide,
+  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
+  //   },
+  //   {
+  //     name: "vipul",
+  //     des: "vhvhvhvhvhvhvhh",
+  //     image: Doctor,
+  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
+  //   },
+  //   {
+  //     name: "hhhhhhhhhht",
+  //     des: "vhvhvhvhvhvhvhh",
+  //     image: Teacher,
+  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
+  //   },
+  //   {
+  //     name: "Lorem Ipsum Dolor Sit",
+  //     des: "vhvhvhvhvhvhvhh",
+  //     image: Engineer,
+  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
+  //   },
+  //   {
+  //     name: "vipul",
+  //     des: "vhvhvhvhvhvhvhh",
+  //     image: Govt,
+  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
+  //   },
+  //   {
+  //     name: "hhhhhhhhhht",
+  //     des: "vhvhvhvhvhvhvhh",
+  //     image: Officers,
+  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
+  //   },
+  // ];
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
@@ -241,7 +235,6 @@ const Professionals = () => {
                   alt={cat.name}
                   className="col-span-2 lg:col-span-1 w-full"
                 />
-                {/* <p>{cat.name}</p> */}
               </>
             ))}
           </div>
