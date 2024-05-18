@@ -1,4 +1,4 @@
-import login from "../Assets/login.png";
+import sign from "../Assets/sign.png";
 import { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import google from "../Assets/google.png";
@@ -7,7 +7,8 @@ import apple from "../Assets/apple.png";
 import Navnext from "../Components/Navnext";
 import Footer from "./Footer";
 import Group from "../Assets/Group.png";
-const Signup = () => {
+
+const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({ fullname: "", email: "", password: "" });
   const [errors, setErrors] = useState({});
@@ -38,7 +39,6 @@ const Signup = () => {
     const { id, value } = e.target;
     setFormData({ ...formData, [id]: value });
   };
-  const nav = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,32 +57,25 @@ const Signup = () => {
 
   return (
     <>
-      <Navnext navigate={nav} />
+      <Navnext />
       <div>
        <img src={Group} alt='background' className='absolute top-0 left-0 w-34% h-[360px]   object-cover' />
       
        </div>
-    <div className="flex flex-col md:flex-row justify-center items-start min-h-screen bg-gray-100 ">
+    <div className="flex flex-col md:flex-row justify-center items-center min-h-screen bg-gray-100 p-4">
     
-      <div className="w-full md:w-1/3 py-[8%]">
-        <div className="flex justify-center flex-col items-center">
-          <h1 className="text-black text-4xl  text-center  font-bold">Welcome to <span className="text-[#0BDBB6] ">DECATLOG</span></h1>
-          <h2 className="text-black font-semibold flex justify-center items-center text-center">Empowering Communities: Connecting Professionals and Funding Initiatives</h2>
+      <div className=" relative w-full md:w-1/3 ">
+      <img src={sign} alt="Login" className="max-w-full h-[600px] flex rounded-xl z-50" />
+      </div>
+      <div className="w-full md:w-1/2 p-4 flex justify-end ">
+      <div>
+        <div className="flex justify-center flex-col">
+          <h1 className="text-black text-4xl flex justify-center  font-bold">Login to your Account</h1>
+          {/* <h2 className="text-black font-semibold flex justify-center items-center text-center">Empowering Communities: Connecting Professionals and Funding Initiatives</h2> */}
         </div>
-        <form className="space-y-4 py-4" onSubmit={handleSubmit}>
-          <div>
-            <label htmlFor="fullname" className="block text-sm font-medium text-gray-700"></label>
-            <input
-              type="text"
-              id="fullname"
-              className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-              placeholder="Full Name"
-              value={formData.fullname}
-              onChange={handleChange}
-            />
-            {errors.fullname && <p className="text-red-500 text-sm">{errors.fullname}</p>}
-          </div>
-          <div>
+        <form className="space-y-6 py-4 md:w-[99%]" onSubmit={handleSubmit}>
+          
+          <div className="mt-6">
             <label htmlFor="email" className="block text-sm font-medium text-gray-700"></label>
             <input
               type="email"
@@ -101,7 +94,7 @@ const Signup = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 className="mt-1 block w-full px-3 py-4 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                placeholder="Enter your password"
+                placeholder=" password"
                 value={formData.password}
                 onChange={handleChange}
               />
@@ -133,15 +126,18 @@ const Signup = () => {
           <img className="rounded-full hover:shadow-md transition duration-300 hover:drop-shadow-2xl  ease-in-out hover:scale-125" src={apple} alt="apple" />
         </div>
         <p className="text-black justify-center flex text-xs w-full">By using Decatlog, you agree to our privacy policy, and our terms and conditions</p>
-        <h1 className="text-3xl text-black font-bold text-center">Join <span className="text-[#0BDBB6]">500+</span> Happy Customers</h1>
+        <h1 className="text-3xl text-black font-bold flex justify-center">Join <span className="text-[#0BDBB6]">500+</span> Happy Customers</h1>
+        </div>
       </div>
-      <div className="w-full md:w-1/2 p-4 flex justify-end items-start">
-        <img src={login} alt="Login" className="max-w-full md:h-[726px] h-auto" />
-      </div>
+      <div>
+       <img src={Group} alt='background' className='absolute top-20 right-0 w-34% h-[360px]   object-cover' />
+      
+       </div>
     </div>
+   
     <Footer />
     </>
   );
 };
 
-export default Signup;
+export default Login;

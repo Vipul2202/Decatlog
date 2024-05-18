@@ -32,7 +32,7 @@ const Navnext = ({navigate}) => {
   return (
     <div>
       <nav className="">
-        <div className=" z-40 flex  items-center justify-between p-6 px-[4%] lg:px-[8%] g w-full bg-gray-200">
+        <div className=" z-40 flex justify-between items-center space-x-6   px-[4%] lg:px-[8%] g w-full bg-white">
 
           <a
             href="https://ragasoft.co.in/about-us/"
@@ -47,18 +47,20 @@ const Navnext = ({navigate}) => {
 
           <div className="flex md:order-2 space-x-2">
 
-            <div>
+            <div className="w-full">
               {!isMobile && (
-                <div className="flex flex-row items-center">
-                <p className="w-full">Already have an account?</p>
+                <div className=" items-center flex gap-5 w-full">
+                <p className="w-full font-semibold">Already have an account?</p>
+
+                <div className="flex justify-end">
               <div className="w-full h-10 py-2 bg-[#0BDBB6] px-4 flex justify-center items-center rounded-md text-white hover:scale-105 hover:shadow-md transition duration-300 hover:drop-shadow-2xl">
              
-              <button onClick={() => navigate('/Signup')}  className="text-white ">Login</button>
+              <button onClick={() => navigate('/Login')}  className="text-white ">Login</button>
             </div>
-            
+            </div>
                 </div>
               )}
-            </div>
+            </div> 
             
             {/* <div>
               {!isMobile && (
@@ -99,12 +101,12 @@ const Navnext = ({navigate}) => {
             id="navbar-sticky"
           >
             <ul
-              className={`flex   flex-col md:p-0 mt-4 font-medium  md:space-x-2 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 sm: text-gray-900 `}
+              className={`flex   flex-col md:p-0 mt-4 font-medium    md:flex-row md:mt-0 md:border-0 text-gray-900 `}
             >
               <li>
                 <a
                   href="#/"
-                  className="block py-2 px-3 rounded hover:text-[#0BDBB6]"
+                  className="block py-2 rounded hover:text-[#0BDBB6]"
                   aria-current="page"
                 >
                   Home
@@ -145,7 +147,7 @@ const Navnext = ({navigate}) => {
               <li>
                 <a
                   href="#testimonial"
-                  className="block py-2 px-3 rounded hover:text-[#0BDBB6]"
+                  className="block py-2  rounded hover:text-[#0BDBB6]"
                 >
                   Investors
                 </a>

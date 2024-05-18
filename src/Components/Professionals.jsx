@@ -12,108 +12,48 @@ const Professionals = () => {
 
   const fetchAllCategories = async () => {
     try {
-      const res = (
-        await axios.get("http://localhost:5000/api/category/getcategory")
-      )
-      const data=res.data
-      //   console.log(res)
+      const res = await axios.get("http://localhost:5000/api/category/getcategory");
+      const data = res.data;
       setCategory(data.categories);
-      //   console.log("categories", category);
     } catch (error) {
       console.log("error in fetching", error);
     }
   };
+
   useEffect(() => {
     fetchAllCategories();
   }, []);
 
   const fetchSliderDetail = async () => {
     try {
-      const res = (
-        await axios.get("http://localhost:5000/api/slider/getslider")
-      )
-      const data=res.data
-      // console.log(res);
-      setSlider(data?.sliderdata);
-      // console.log("slider", slider);
+      const res = await axios.get("http://localhost:5000/api/slider/getslider");
+      const data = res.data;
+      setSlider(data.sliderdata);
     } catch (error) {
       console.log("error in fetching slider", error);
     }
   };
-  useEffect(()=>{
-    fetchSliderDetail()
-},[])
 
-  // const Professions = [
-  //   { name: "Doctor", image: Doctor },
-  //   { name: "Engineer", image: Engineer },
-  //   { name: "Chartered Accountant", image: Ca },
-  //   { name: "Advocate", image: Advocate },
-  //   { name: "Teacher", image: Teacher },
-  //   { name: "Labour", image: Labour },
-  //   { name: "Government Employee", image: Govt },
-  //   { name: "Officer", image: Officers },
-  // ];
-  // const Cards = [
-  //   {
-  //     name: "Lorem Ipsum Dolor Sit",
-  //     des: "vhvhvhvhvhvhvhh",
-  //     image: slide,
-  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-  //   },
-  //   {
-  //     name: "vipul",
-  //     des: "vhvhvhvhvhvhvhh",
-  //     image: Doctor,
-  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-  //   },
-  //   {
-  //     name: "hhhhhhhhhht",
-  //     des: "vhvhvhvhvhvhvhh",
-  //     image: Teacher,
-  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-  //   },
-  //   {
-  //     name: "Lorem Ipsum Dolor Sit",
-  //     des: "vhvhvhvhvhvhvhh",
-  //     image: Engineer,
-  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-  //   },
-  //   {
-  //     name: "vipul",
-  //     des: "vhvhvhvhvhvhvhh",
-  //     image: Govt,
-  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-  //   },
-  //   {
-  //     name: "hhhhhhhhhht",
-  //     des: "vhvhvhvhvhvhvhh",
-  //     image: Officers,
-  //     url: "https://www.linkedin.com/in/vipul-taneja-a71597219/",
-  //   },
-  // ];
+  useEffect(() => {
+    fetchSliderDetail();
+  }, []);
 
   const handleSearchInputChange = (e) => {
     setSearchQuery(e.target.value);
   };
 
-  // Filter professions based on search query
-  // const filteredProfessions = Professions.filter(profession =>
-  //     profession.name.toLowerCase().includes(searchQuery.toLowerCase())
-  // );
-
   const handleSlideChange = (index) => {
     setActiveIndex(index);
   };
 
-  // Decide whether to display filtered or original professions
+  const currentSlide = slider[activeIndex];
 
   return (
     <div className="p-6 px-[4%] lg:px-[8%] w-full relative">
       <img
         src={element}
         alt="background"
-        className="absolute top-0 left-0 w-40% h-[500px] z-0  object-cover"
+        className="absolute top-0 left-0 w-40% h-[500px] z-0 object-cover"
       />
 
       <div className="z-10">
@@ -122,12 +62,12 @@ const Professionals = () => {
           <span className="text-[#0BDBB6]">Consectetur Adipiscing Elit</span>
         </h1>
 
-        <form class="max-w-2xl mt-4">
-          <div class="flex">
+        <form className="max-w-2xl mt-4">
+          <div className="flex">
             <button
               id="dropdown-button"
               data-dropdown-toggle="dropdown"
-              class="flex-shrink-0 z-10 inline-flex items-start py-2.5 px-12 space-x-2 text-sm font-medium text-start text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
+              className="flex-shrink-0 z-10 inline-flex items-start py-2.5 px-12 space-x-2 text-sm font-medium text-start text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700 dark:text-white dark:border-gray-600"
               type="button"
             >
               <svg
@@ -142,28 +82,28 @@ const Professionals = () => {
                   fill="#938F96"
                 />
               </svg>
-              <h1 class="text-[#938F96]">Search Location...</h1>
+              <h1 className="text-[#938F96]">Search Location...</h1>
             </button>
             <div
               id="dropdown"
-              class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
+              className="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700"
             ></div>
-            <div class="relative w-full">
+            <div className="relative w-full">
               <input
                 type="text"
                 id="search-dropdown"
-                class="block p-2.5 w-full z-20 text-sm text-gray-700 bg-gray-50 rounded-e-lg border-s-gray-2 border-s-2 border border-gray-300 focus:ring-[#0BDBB6] focus:border-[#0BDBB6] dark:border-[#0BDBB6] dark:text-white dark:focus:border-[#0BDBB6]"
+                className="block p-2.5 w-full z-20 text-sm text-gray-700 bg-gray-50 rounded-e-lg border-s-gray-2 border-s-2 border border-gray-300 focus:ring-[#0BDBB6] focus:border-[#0BDBB6] dark:border-[#0BDBB6] dark:text-white dark:focus:border-[#0BDBB6]"
                 placeholder="Search cardiologist, doctors..."
                 required
-                value="Search cardiologist, doctors..."
-                onChange="{handleSearchInputChange}"
+                value={searchQuery}
+                onChange={handleSearchInputChange}
               />
               <button
                 type="submit"
-                class="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-[#0BDBB6] rounded-e-lg border border-[#0BDBB6] hover:bg-[#0BDBB6] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#0BDBB6] dark:hover:bg-[#0BDBB6] dark:focus:ring-blue-800"
+                className="absolute top-0 right-0 p-2.5 text-sm font-medium h-full text-white bg-[#0BDBB6] rounded-e-lg border border-[#0BDBB6] hover:bg-[#0BDBB6] focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-[#0BDBB6] dark:hover:bg-[#0BDBB6] dark:focus:ring-blue-800"
               >
                 <svg
-                  class="w-4 h-4"
+                  className="w-4 h-4"
                   aria-hidden="true"
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -177,47 +117,44 @@ const Professionals = () => {
                     d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                   />
                 </svg>
-                <span class="sr-only">Search</span>
+                <span className="sr-only">Search</span>
               </button>
             </div>
           </div>
         </form>
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 space-x-4 mt-4">
-        <div className="h-96  md:w-[95%] w-full bg-gradient-to-r from-[#2D4760] to-[#275680] rounded-lg relative px-4 p-4 mt-2">
-          <div>
-            <h1 className="text-4xl font-bold w-[60%] text-white ">
-              {slider[activeIndex].title}{" "}
-            </h1>
-            <h2 className="text-white w-[60%] text-sm">
-              {slider[activeIndex].description}
-            </h2>
-            <button className="px-2 py-1 bg-[#FBFF7F] rounded-lg mt-2">
-              Subscribe Now{" "}
-            </button>
-          </div>
+        <div className="h-96 md:w-[95%] w-full bg-gradient-to-r from-[#2D4760] to-[#275680] rounded-lg relative px-4 p-4 mt-2">
+          {currentSlide && (
+            <div>
+              <h1 className="text-4xl font-bold w-[60%] text-white ">
+                {currentSlide.title}
+              </h1>
+              <h2 className="text-white w-[60%] text-sm">
+                {currentSlide.description}
+              </h2>
+              <button className="px-2 py-1 bg-[#FBFF7F] rounded-lg mt-2">
+                Subscribe Now
+              </button>
+            </div>
+          )}
           <div
-            className={`flex ${
-              isMobile ? "flex-col" : "flex-row"
-            } md:space-x-3 items-end justify-end`}
+            className={`flex ${isMobile ? "flex-col" : "flex-row"} md:space-x-3 items-end justify-end`}
           >
-            <img
-              className="absolute flex justify-end items-end top-24 w-72 h-72"
-              src={slider[activeIndex].image}
-              alt="testimonial"
-            />
+            {currentSlide && (
+              <img
+                className={`absolute ${isMobile ? "w-full h-[70%] bottom-5" : "w-[40%] bottom-0 right-0"} `}
+                src={currentSlide.image}
+                alt="testimonial"
+              />
+            )}
           </div>
-
           <div className="absolute flex justify-center items-end w-full bottom-8">
             <div className="flex justify-center items-end">
               {slider.map((_, index) => (
                 <div key={index} className="pagination-icon">
                   <button
-                    className={`w-3 h-3 rounded-full mx-1 ${
-                      activeIndex === index
-                        ? "bg-white"
-                        : "bg-gray-500 opacity-50"
-                    }`}
+                    className={`w-3 h-3 rounded-full mx-1 ${activeIndex === index ? "bg-white" : "bg-gray-500 opacity-50"}`}
                     onClick={() => handleSlideChange(index)}
                   />
                 </div>
@@ -225,17 +162,15 @@ const Professionals = () => {
             </div>
           </div>
         </div>
-        <div className="w-full  ">
+        <div className="w-full">
           <div className="grid grid-cols-4 gap-4">
             {category.map((cat) => (
-              <>
-                <img
-                  key={cat._id}
-                  src={cat.image}
-                  alt={cat.name}
-                  className="col-span-2 lg:col-span-1 w-full"
-                />
-              </>
+              <img
+                key={cat._id}
+                src={cat.image}
+                alt={cat.name}
+                className="col-span-2 lg:col-span-1 w-full"
+              />
             ))}
           </div>
         </div>
