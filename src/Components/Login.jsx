@@ -7,10 +7,11 @@ import apple from "../Assets/apple.png";
 import Navnext from "../Components/Navnext";
 import Footer from "./Footer";
 import Group from "../Assets/Group.png";
+import axios from "axios";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [formData, setFormData] = useState({ fullname: "", email: "", password: "" });
+  const [formData, setFormData] = useState({ email: "", password: "" });
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -52,8 +53,19 @@ const Login = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
+  const handleLogin=async()=>{
+    try {
+       const res=(await axios.post("http://localhost:5000/api/user/login",formData)).data;
+       console.log(res);
+      
+    } catch (error) {
+      console.log("error in login",error);
+      
+    }
 
+  }
 
+console.log((formData))
 
   return (
     <>
@@ -111,9 +123,10 @@ const Login = () => {
           <div>
             <button
               type="submit"
+              onClick={handleLogin}
               className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-lg text-black font-bold bg-[#0BDBB6] hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
             >
-              Create An Account
+              Login
             </button>
           </div>
         </form>
